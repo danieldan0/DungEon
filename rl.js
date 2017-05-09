@@ -95,30 +95,52 @@ Player.prototype.act = function() {
     
 Player.prototype.handleEvent = function(e) {
     var code = e.keyCode;
-    if (code == 13 || code == 32) {
+    if (code == ROT.VK_SPACE || code == ROT.VK_SPACE) {
         this._checkBox();
         return;
     }
 
-    var keyMap = {};
-    keyMap[38] = 0;
-    keyMap[33] = 1;
-    keyMap[39] = 2;
-    keyMap[34] = 3;
-    keyMap[40] = 4;
-    keyMap[35] = 5;
-    keyMap[37] = 6;
-    keyMap[36] = 7;
+    keyMap = {};
+    keyMap[ROT.VK_K] = 0;
+    keyMap[ROT.VK_UP] = 0;
+    keyMap[ROT.VK_NUMPAD8] = 0;
+    keyMap[ROT.VK_U] = 1;
+    keyMap[ROT.VK_NUMPAD9] = 1;
+    keyMap[ROT.VK_L] = 2;
+    keyMap[ROT.VK_RIGHT] = 2;
+    keyMap[ROT.VK_NUMPAD6] = 2;
+    keyMap[ROT.VK_N] = 3;
+    keyMap[ROT.VK_NUMPAD3] = 3;
+    keyMap[ROT.VK_J] = 4;
+    keyMap[ROT.VK_DOWN] = 4;
+    keyMap[ROT.VK_NUMPAD2] = 4;
+    keyMap[ROT.VK_B] = 5;
+    keyMap[ROT.VK_NUMPAD1] = 5;
+    keyMap[ROT.VK_H] = 6;
+    keyMap[ROT.VK_LEFT] = 6;
+    keyMap[ROT.VK_NUMPAD4] = 6;
+    keyMap[ROT.VK_Y] = 7;
+    keyMap[ROT.VK_NUMPAD7] = 7;
+
+    keyMap[ROT.VK_PERIOD] = -1;
+    keyMap[ROT.VK_CLEAR] = -1;
+    keyMap[ROT.VK_NUMPAD5] = -1;
 
     /* one of numpad directions? */
     if (!(code in keyMap)) { return; }
 
     /* is there a free space? */
-    var dir = ROT.DIRS[8][keyMap[code]];
-    var newX = this._x + dir[0];
-    var newY = this._y + dir[1];
-    var newKey = newX + "," + newY;
-    if (!(newKey in Game.map)) { return; }
+    if (keyMap[code] !== -1) {
+        var dir = ROT.DIRS[8][keyMap[code]];
+        var newX = this._x + dir[0];
+        var newY = this._y + dir[1];
+        var newKey = newX + "," + newY;
+        if (!(newKey in Game.map)) { return; }
+    } else {
+        var newX = this._x;
+        var newY = this._y;
+        var newKey = newX + "," + newY;
+    }
 
     Game.display.draw(this._x, this._y, Game.map[this._x+","+this._y]);
     this._x = newX;
@@ -187,7 +209,7 @@ Pedro.prototype._draw = function() {
     Game.display.draw(this._x, this._y, "P", "red");
 }    
 
-window.onload() = function() {
+window.onload = function() {
     // Check if rot.js can work on this browser
     if (!ROT.isSupported()) {
         alert("The rot.js library isn't supported by your browser.");
