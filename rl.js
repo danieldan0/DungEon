@@ -53,7 +53,7 @@ var Game = {
         for (var i=0;i<10;i++) {
             var index = Math.floor(ROT.RNG.getUniform() * freeCells.length);
             var key = freeCells.splice(index, 1)[0];
-            this.map[key] = "%c{#ccf}*";
+            this.map[key] = "*";
             if (!i) { this.ananas = key; } /* first box contains an ananas */
         }
     },
@@ -156,9 +156,7 @@ Player.prototype._draw = function() {
     
 Player.prototype._checkBox = function() {
     var key = this._x + "," + this._y;
-    if (Game.map[key] == "%c{yellow}*") {
-        alert("This box has been already opened. It's empty. :-(")
-    } else if (Game.map[key] != "%c{blue}*") {
+    if (Game.map[key] != "*") {
         alert("There is no box here!");
     } else if (key == Game.ananas) {
         alert("Hooray! You found an ananas and won this game.");
@@ -166,7 +164,7 @@ Player.prototype._checkBox = function() {
         window.removeEventListener("keydown", this);
     } else {
         alert("This box is empty :-(");
-        Game.map[key] = "%c{yellow}*";
+        Game.map[key] = ".";
     }
 }
     
