@@ -39,6 +39,7 @@ var Map = {
     map: [],
 
     generateMap: function(w, h) {
+        //FIXME
         var row = [];
         for (var y = 0; y < MAP_HEIGHT; y++) {
             for (var x = 0; x < MAP_WIDTH; x++) {
