@@ -8,3 +8,5 @@ rot.js roguelike based on RogueBasin Rot.js tutorial.
  - Useful feature: boxes are disappearing after being opened (if they were empty)
  - Added vi keys support
  - Added "skip turn": press . (or 5 on numpad) to skip turn
+12.05.2017:
+ - REMAKE! Help me to fix bugs, please
