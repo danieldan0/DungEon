@@ -24,7 +24,7 @@ var Display = {
     drawMap: function() {
         for (var y = 0; y < MAP_HEIGHT; y++) {
             for (var x = 0; x < MAP_WIDTH; x++) {
-                wall = Map.map[y][x].blocks_sight;
+                wall = Map.map[y][x].blocksSight();
                 if (wall) {
                     this.display.draw(x, y, ' ', null, color_dark_wall);
                 } else {
@@ -39,7 +39,6 @@ var Map = {
     map: [],
 
     generateMap: function(w, h) {
-        //FIXME
         var row = [];
         for (var y = 0; y < MAP_HEIGHT; y++) {
             for (var x = 0; x < MAP_WIDTH; x++) {
@@ -72,6 +71,10 @@ Obj.prototype.clear = function() { Display.display.draw(this._x, this._y, ' '); 
 var Tile = function(blocked, blocks_sight) {
     this._blocked = blocked;
     this._blocks_sight = typeof blocks_sight ? blocks_sight : blocked;
+}
+
+Tile.prototype.blocksSight = function() {
+    return this._blocks_sight;
 }
 
 window.onload = function() {
