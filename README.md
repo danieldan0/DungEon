@@ -1,3 +1,5 @@
+# Remake is here https://github.com/danieldan0/dung
+
 # DungEon
 rot.js roguelike based on RogueBasin Rot.js tutorial.
 # CHANGELOG
